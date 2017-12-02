@@ -1,0 +1,35 @@
+{
+  "utilisateur": [
+    {
+      "email": "x@x",
+      "lastname": "lastName",
+      "firstname": "firstname"
+    },
+    {
+      "email": "x@bg",
+      "lastname": "lastName",
+      "firstname": "firstname"
+    },
+    {
+      "email": "lebagousse@gauthier.fr",
+      "lastname": "lebagousse",
+      "firstname": "gauthier"
+    }
+  ],
+  "products": [
+    {
+      "id_product": "7b6658fa-c194-4b25-b9a0-4a535e5ab4be",
+      "title": "SW",
+      "description": "best game",
+      "price": 67,
+      "quantity": 2
+    }
+  ],
+  "commandes": [
+    {
+      "id_commande": "1d55ccc4-619f-4338-9bbe-df4eee72b077",
+      "id_utilisateur": "lebagousse@gauthier.fr",
+      "produit": ""
+    }
+  ]
+}
