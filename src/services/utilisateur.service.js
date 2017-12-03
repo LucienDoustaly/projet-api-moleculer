@@ -105,7 +105,7 @@ module.exports = {
 			}
 		},
 
-		//	z
+		//	call "utilisateur.edit" --email --lastname --firstname
 			edit: {
 			params: {
 				email: "string",

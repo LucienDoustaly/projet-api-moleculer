@@ -15,10 +15,10 @@ module.exports = {
 
 	actions: {
 
-		//	call "commandes.create" --id_utilisateur
+		//	call "commandes.create" --id_user
 		create: {
 			params: {
-				id_utilisateur: "string"
+				id_user: "string"
 			},
 			handler(ctx) {
 				var commande = new Models.Commande(ctx.params).create();
@@ -55,18 +55,18 @@ module.exports = {
 		},
 
 
-		//	call "commandes.getidC" --id_commande
+		//	call "commandes.getidC" --id_order
 		getidC: {
 			params: {
-				id_commande: "string"
+				id_order: "string"
 			},
 			handler(ctx) {
-				return ctx.call("commandes.verify", { id_commande: ctx.params.id_commande })
+				return ctx.call("commandes.verify", { id_order: ctx.params.id_order })
 				.then((exists) => {
 					if (exists) {
 						return Database()
 							.then((db) => {
-								var commande = db.get("commandes").find({ id_commande: ctx.params.id_commande }).value();;
+								var commande = db.get("commandes").find({ id_order: ctx.params.id_order }).value();;
 								return commande;
 							})
 							.catch(() => {
@@ -79,18 +79,18 @@ module.exports = {
 			}
 		},
 
-		//	call "commandes.getidU" --id_utilisateur
+		//	call "commandes.getidU" --id_user
 		getidU: {
 			params: {
-				id_utilisateur: "string"
+				id_user: "string"
 			},
 			handler(ctx) {
-				return ctx.call("commandes.verifyid", { id_utilisateur: ctx.params.id_utilisateur })
+				return ctx.call("commandes.verifyid", { id_user: ctx.params.id_user })
 				.then((exists) => {
 					if (exists) {
 						return Database()
 							.then((db) => {
-								var commandeuser = db.get("commandes").map( "id_commande" ).value();;
+								var commandeuser = db.get("commandes").map( "id_order" ).value();;
 								return commandeuser;
 							})
 							.catch(() => {
@@ -103,46 +103,46 @@ module.exports = {
 			}
 		},
 
-		//	call "commandes.verify" --id_commande
+		//	call "commandes.verify" --id_order
 		verify: {
 			params: {
-				id_commande: "string"
+				id_order: "string"
 			},
 			handler(ctx) {
 				return Database()
 					.then((db) => {
 						var value = db.get("commandes")
-										.filter({ id_commande: ctx.params.id_commande })
+										.filter({ id_order: ctx.params.id_order })
 										.value();
 						return value.length > 0 ? true : false;
 					})
 			}
 		},
 
-		//	call "commandes.verifyid" --id_utilisateur
+		//	call "commandes.verifyid" --id_user
 		verifyid: {
 			params: {
-				id_utilisateur: "string"
+				id_user: "string"
 			},
 			handler(ctx) {
 				return Database()
 					.then((db) => {
 						var value = db.get("commandes")
-										.filter({ id_utilisateur: ctx.params.id_utilisateur })
+										.filter({ id_user: ctx.params.id_user })
 										.value();
 						return value.length > 0 ? true : false;
 					})
 			}
 		},
 
-		//	call "commandes.increment" --id_commande --id_product
+		//	call "commandes.increment" --id_order --id_product
 		increment: {
 			params: {
-				id_commande : "string",
+				id_order : "string",
 				id_product : "string"
 			},
 			handler(ctx) {
-				return ctx.call("commandes.getidC", { id_commande: ctx.params.id_commande })
+				return ctx.call("commandes.getidC", { id_order: ctx.params.id_order })
 						.then((db_commandes) => {
 							//
 							var commande = new Models.Commande(db_commandes).create();
@@ -152,7 +152,7 @@ module.exports = {
 							return Database()
 								.then((db) => {
 									return db.get("commandes")
-										.find({ id_commande: ctx.params.id_commande })
+										.find({ id_order: ctx.params.id_order })
 										.assign(commande)
 										.write()
 										.then(() => {
@@ -166,14 +166,14 @@ module.exports = {
 			}
 		},
 
-		//	call "commandes.decrement" --id_commande --id_product
+		//	call "commandes.decrement" --id_order --id_product
 		decrement: {
 			params: {
-				id_commande : "string",
+				id_order : "string",
 				id_product : "string"
 			},
 			handler(ctx) {
-				return ctx.call("commandes.getidC", { id_commande: ctx.params.id_commande })
+				return ctx.call("commandes.getidC", { id_order: ctx.params.id_order })
 						.then((db_commandes) => {
 							//
 							var commande = new Models.Commande(db_commandes).create();
@@ -183,7 +183,7 @@ module.exports = {
 							return Database()
 								.then((db) => {
 									return db.get("commandes")
-										.find({ id_commande: ctx.params.id_commande })
+										.find({ id_order: ctx.params.id_order })
 										.assign(commande)
 										.write()
 										.then(() => {
@@ -197,13 +197,13 @@ module.exports = {
 			}
 		},
 
-		//	call "commandes.edit" --id_commande
+		//	call "commandes.edit" --id_order
 		validation: {
 			params: {
-				id_commande : "string"
+				id_order : "string"
 			},
 			handler(ctx) {
-				return ctx.call("commandes.getidC", { id_commande: ctx.params.id_commande })
+				return ctx.call("commandes.getidC", { id_order: ctx.params.id_order })
 						.then((db_commandes) => {
 							//
 							var commande = new Models.Commande(db_commandes).create();
@@ -212,7 +212,7 @@ module.exports = {
 							return Database()
 								.then((db) => {
 									return db.get("commandes")
-										.find({ id_commande: ctx.params.id_commande })
+										.find({ id_order: ctx.params.id_order })
 										.assign(commande)
 										.write()
 										.then(() => {

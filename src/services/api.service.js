@@ -28,7 +28,10 @@ module.exports = {
 		routes: [
 
 			{
-				path: "/v1/",
+				bodyParsers: {
+	                json: true,
+	            },
+				path: "/api/v1/",
 				whitelist: [
 					// Access to any actions in all services
 					"*"
@@ -40,43 +43,24 @@ module.exports = {
 					// "POST user/:auth0_id": "user.create",
 
 					//user
-					"POST user": "utilisateur.create",
-					"GET user/:email": "utilisateur.get",
-					"PATCH user/:email": "utilisateur.edit",
+					"POST user": "utilisateur.create", //check
+					"GET user/:email": "utilisateur.get", //check
+					"PATCH user/:email": "utilisateur.edit", //check
 
 					//product
-					"POST product": "products.create",
-					"GET product/:id_product": "products.get",
-					"PATCH product/:id_product": "products.edit",
-					"PATCH product/:id_product/increment": "products.increment",
-					"PATCH product/:id_product/decrement": "products.decrement",
+					"POST product": "products.create",//check
+					"GET product/:id_product": "products.get", //check
+					"PATCH product/:id_product": "products.edit", //check
+					"PATCH product/:id_product/increment": "products.increment",//check
+					"PATCH product/:id_product/decrement": "products.decrement",//check
 
 					//commande
-					"POST order/user/:id_user": "commandes.create",
-					"GET order/:id_order": "commandes.getidC",
-					"GET order/user/:id_user": "commandes.getidU",
-					"GET order/:id_order": "commandes.get",
-					"PATCH order/:id_order/product/:id_product/increment": "commandes.increment",
-					"PATCH order/:id_order/product/:id_product/decrement": "commandes.decrement",
-					"PATCH order/:id_order": "commandes.validation",
-
-
-					
-
-
-				}
-			},
-			{
-				bodyParsers: {
-	                json: true,
-	            },
-				path: "/client/",
-				whitelist: [
-					// Access to any actions in all services
-					"*"
-				],
-				aliases: {
-					//	Example project
+					"POST order/user/:id_user": "commandes.create",//check
+					"GET order/:id_order": "commandes.getidC",//check
+					"GET order/user/:id_user": "commandes.getidU",//ne considere pas id user
+					"PATCH order/:id_order/product/:id_product/increment": "commandes.increment",//check
+					"PATCH order/:id_order/product/:id_product/decrement": "commandes.decrement",//check
+					"PATCH order/:id_order": "commandes.validation"//check
 				}
 			}
 		]
