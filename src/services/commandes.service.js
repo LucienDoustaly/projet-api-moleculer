@@ -195,6 +195,35 @@ module.exports = {
 								})
 						})
 			}
+		},
+
+		//	call "commandes.edit" --id_commande
+		validation: {
+			params: {
+				id_commande : "string"
+			},
+			handler(ctx) {
+				return ctx.call("commandes.getidC", { id_commande: ctx.params.id_commande })
+						.then((db_commandes) => {
+							//
+							var commande = new Models.Commande(db_commandes).create();
+							commande.validation = "true" || db_commandes.validation;
+							//
+							return Database()
+								.then((db) => {
+									return db.get("commandes")
+										.find({ id_commande: ctx.params.id_commande })
+										.assign(commande)
+										.write()
+										.then(() => {
+											return commande;
+										})
+										.catch(() => {
+											return new MoleculerError("Products", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error" } )
+										});
+								})
+						})
+			}
 		}
 
 	}

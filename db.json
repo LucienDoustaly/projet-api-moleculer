@@ -27,16 +27,11 @@
   ],
   "commandes": [
     {
-      "id_commande": "32e62346-fbfe-45ff-8910-a4f88ad9501a",
+      "id_commande": "259fccbb-a0d7-4ad3-91cb-163d4c085488",
       "id_utilisateur": "lebagousse@gauthier.fr",
       "id_product": "",
-      "quantity": 0
-    },
-    {
-      "id_commande": "db367201-0696-4158-a7c5-99e7a86be7e9",
-      "id_utilisateur": "lebagousse@gauthier.fr",
-      "id_product": "7b6658fa-c194-4b25-b9a0-4a535e5ab4be",
-      "quantity": 8
+      "quantity": 2,
+      "validation": "true"
     }
   ]
 }

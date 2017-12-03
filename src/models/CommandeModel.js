@@ -10,6 +10,7 @@ var CommandeModel = function(params) {
 	this.id_utilisateur = params.id_utilisateur || "";
 	this.id_product = params.product || "";
 	this.quantity = params.quantity || 0;
+	this.validation = "false";
 }
 
 CommandeModel.prototype.create = function() {
