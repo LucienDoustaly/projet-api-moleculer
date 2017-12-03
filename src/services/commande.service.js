@@ -79,6 +79,32 @@ module.exports = {
 			}
 		},
 
+		//	call "commandes.get" --id_utilisateur
+		get: {
+			params: {
+				id_utilisateur: "string"
+			},
+			handler(ctx) {
+				return ctx.call("commandes.verifyid", { id_utilisateur: ctx.params.id_utilisateur })
+				.then((exists) => {
+					if (exists) {
+						return Database()
+							.then((db) => {
+								var array = [];
+								idcommande = db.get("commandes").find({ id_utilisateur: ctx.params.id_utilisateur }).value();
+								array.push(idcommande.id_commande);
+								return array;
+							})
+							.catch(() => {
+								return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical error" } )
+							});
+					} else {
+						return new MoleculerError("Commandes", 404, "Product doesnt exists", { code: 404, message: "Product doesn't exists" } )
+					}
+				})
+			}
+		},
+
 		//	call "commandes.verify" --id_commande
 		verify: {
 			params: {
@@ -89,6 +115,22 @@ module.exports = {
 					.then((db) => {
 						var value = db.get("commandes")
 										.filter({ id_commande: ctx.params.id_commande })
+										.value();
+						return value.length > 0 ? true : false;
+					})
+			}
+		},
+
+		//	call "commandes.verifyid" --id_commande
+		verifyid: {
+			params: {
+				id_utilisateur: "string"
+			},
+			handler(ctx) {
+				return Database()
+					.then((db) => {
+						var value = db.get("commandes")
+										.filter({ id_utilisateur: ctx.params.id_utilisateur })
 										.value();
 						return value.length > 0 ? true : false;
 					})
