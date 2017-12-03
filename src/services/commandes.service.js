@@ -70,7 +70,7 @@ module.exports = {
 								return commande;
 							})
 							.catch(() => {
-								return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical error" } )
+								return new MoleculerError("Commandes", 500, "ERR_CRITIALGET", { code: 500, message: "Critical error" } )
 							});
 					} else {
 						return new MoleculerError("Commandes", 404, "Product doesnt exists", { code: 404, message: "Product doesn't exists" } )
@@ -156,10 +156,10 @@ module.exports = {
 										.assign(commande)
 										.write()
 										.then(() => {
-											return commandes.quantity;
+											return commande.quantity;
 										})
 										.catch(() => {
-											return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error" } )
+											return new MoleculerError("Commandes", 500, "ERR_CRITIALIncrement", { code: 500, message: "Critical Error" } )
 										});
 								})
 						})
@@ -187,7 +187,7 @@ module.exports = {
 										.assign(commande)
 										.write()
 										.then(() => {
-											return commandes.quantity;
+											return commande.quantity;
 										})
 										.catch(() => {
 											return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error" } )
