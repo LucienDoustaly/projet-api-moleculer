@@ -14,7 +14,7 @@ module.exports = {
             // Configures the Access-Control-Allow-Origin CORS header.
             origin: "*",
             // Configures the Access-Control-Allow-Methods CORS header.
-            methods: ["GET", "PATCH", "OPTIONS", "POST", "PUT", "DELETE"],
+            methods: ["GET", "PATCH", "POST"],
             // Configures the Access-Control-Allow-Headers CORS header.
             allowedHeaders: ["Content-Type"],
             // Configures the Access-Control-Expose-Headers CORS header.
@@ -28,7 +28,7 @@ module.exports = {
 		routes: [
 
 			{
-				path: "/status/",
+				path: "/v1/",
 				whitelist: [
 					// Access to any actions in all services
 					"*"
@@ -38,10 +38,16 @@ module.exports = {
 					// You can access it with `ctx.params.name` in action
 					// "GET hi/:name": "greeter.welcome",
 					// "POST user/:auth0_id": "user.create",
-					"GET server": "application.configuration",
-					"GET health": "application.health",
-					"GET database": "application.database",
-					"GET reset": "application.reset"
+
+					//user
+					"POST user": "utilisateur.create",
+					"GET user/:email": "utilisateur.get",
+					"PATCH user/:email": "utilisateur.edit",
+
+					//product
+					"POST product": "products.create",
+					"GET product/:id_product": "products.get",
+					"PATCH product/:email": "products.edit",
 				}
 			},
 			{
