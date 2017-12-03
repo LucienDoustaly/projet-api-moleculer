@@ -47,7 +47,23 @@ module.exports = {
 					//product
 					"POST product": "products.create",
 					"GET product/:id_product": "products.get",
-					"PATCH product/:email": "products.edit",
+					"PATCH product/:id_product": "products.edit",
+					"PATCH product/:id_product/increment": "products.increment",
+					"PATCH product/:id_product/decrement": "products.decrement",
+
+					//commande
+					"POST order/user/:id_user": "commandes.create",
+					"GET order/:id_order": "commandes.getidC",
+					"GET order/user/:id_user": "commandes.getidU",
+					"GET order/:id_order": "commandes.get",
+					"PATCH order/:id_order/product/:id_product/increment": "commandes.increment",
+					"PATCH order/:id_order/product/:id_product/decrement": "commandes.decrement",
+					"PATCH order/:id_order": "commandes.validation",
+
+
+					
+
+
 				}
 			},
 			{
