@@ -22,19 +22,21 @@
       "title": "SW",
       "description": "best game",
       "price": 67,
-      "quantity": 2
+      "quantity": 3
     }
   ],
   "commandes": [
     {
-      "id_commande": "1d55ccc4-619f-4338-9bbe-df4eee72b077",
+      "id_commande": "32e62346-fbfe-45ff-8910-a4f88ad9501a",
       "id_utilisateur": "lebagousse@gauthier.fr",
-      "produit": ""
+      "id_product": "",
+      "quantity": 0
     },
     {
-      "id_commande": "2c1be635-022a-4395-9b19-3ab3541e30b5",
+      "id_commande": "db367201-0696-4158-a7c5-99e7a86be7e9",
       "id_utilisateur": "lebagousse@gauthier.fr",
-      "produit": ""
+      "id_product": "7b6658fa-c194-4b25-b9a0-4a535e5ab4be",
+      "quantity": 2
     }
   ]
 }

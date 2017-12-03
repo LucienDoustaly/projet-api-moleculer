@@ -8,7 +8,8 @@ var fields_reducers = {
 var CommandeModel = function(params) {
 	this.id_commande = params.id_commande || uuidv4();
 	this.id_utilisateur = params.id_utilisateur || "";
-	this.produit = params.produit || "";
+	this.id_product = params.product || "";
+	this.quantity = params.quantity || 0;
 }
 
 CommandeModel.prototype.create = function() {

@@ -67,7 +67,7 @@ module.exports = {
 						return Database()
 							.then((db) => {
 								var commande = db.get("commandes").find({ id_commande: ctx.params.id_commande }).value();;
-								return commande.id_commande;
+								return commande;
 							})
 							.catch(() => {
 								return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical error" } )
@@ -135,92 +135,62 @@ module.exports = {
 			}
 		},
 
-		//	call "products.edit" --id_product  --description
-		edit: {
-			params: {
-				id_product : "string",
-				title : "string",
-				description: "string",
-				price: "number"
-			},
-			handler(ctx) {
-				return ctx.call("products.get", { id_product: ctx.params.id_product })
-						.then((db_products) => {
-							//
-							var product = new Models.Product(db_products).create();
-							product.title = ctx.params.title || db_products.title;
-							product.description = ctx.params.description || db_products.description;
-							product.price = ctx.params.price || db_products.price;
-							//
-							return Database()
-								.then((db) => {
-									return db.get("products")
-										.find({ id_product: ctx.params.id_product })
-										.assign(product)
-										.write()
-										.then(() => {
-											return product.id_product;
-										})
-										.catch(() => {
-											return new MoleculerError("Products", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error" } )
-										});
-								})
-						})
-			}
-		},
-
-		//	call "products.increment" --id_product
+		//	call "commandes.increment" --id_commande --id_product
 		increment: {
 			params: {
+				id_commande : "string",
 				id_product : "string"
 			},
 			handler(ctx) {
-				return ctx.call("products.get", { id_product: ctx.params.id_product })
-						.then((db_products) => {
+				return ctx.call("commandes.getidC", { id_commande: ctx.params.id_commande })
+						.then((db_commandes) => {
 							//
-							var product = new Models.Product(db_products).create();
-							product.quantity = db_products.quantity + 1;
+							var commande = new Models.Commande(db_commandes).create();
+							commande.id_product = ctx.params.id_product || db_commandes.id_product;
+							commande.quantity = db_commandes.quantity + 1;
 							//
 							return Database()
 								.then((db) => {
-									return db.get("products")
-										.find({ id_product: ctx.params.id_product })
-										.assign(product)
+									return db.get("commandes")
+										.find({ id_commande: ctx.params.id_commande })
+										.assign(commande)
 										.write()
 										.then(() => {
-											return [product.id_product, product.quantity];
+											return commandes.quantity;
 										})
 										.catch(() => {
-											return new MoleculerError("Products", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error" } )
+											return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error" } )
 										});
 								})
 						})
 			}
 		},
 
-		//	call "products.decrement" --id_product
+		//	call "commandes.decrement" --id_commande --id_product
 		decrement: {
 			params: {
+				id_commande : "string",
 				id_product : "string"
 			},
 			handler(ctx) {
-				return ctx.call("products.get", { id_product: ctx.params.id_product })
-						.then((db_products) => {
+				return ctx.call("commandes.getidC", { id_commande: ctx.params.id_commande })
+						.then((db_commandes) => {
 							//
-							var product = new Models.Product(db_products).create();
-							product.quantity = db_products.quantity - 1;
+							var commande = new Models.Commande(db_commandes).create();
+							commande.id_product = ctx.params.id_product || db_commandes.id_product;
+							commande.quantity = db_commandes.quantity - 1;
 							//
 							return Database()
 								.then((db) => {
-									return db.get("products")
-										.find({ id_product: ctx.params.id_product })
-										.assign(product)
+									return db.get("commandes")
+										.find({ id_commande: ctx.params.id_commande })
+										.assign(commande)
 										.write()
 										.then(() => {
-											return [product.id_product,product.quantity];
+											return commandes.quantity;
 										})
 										.catch(() => {
-											return new MoleculerError("Products", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error" } )
+											return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error" } )
 										});
 								})
 						})
