@@ -55,8 +55,8 @@ module.exports = {
 		},
 
 
-		//	call "commandes.get" --id_commande
-		get: {
+		//	call "commandes.getidC" --id_commande
+		getidC: {
 			params: {
 				id_commande: "string"
 			},
@@ -67,7 +67,7 @@ module.exports = {
 						return Database()
 							.then((db) => {
 								var commande = db.get("commandes").find({ id_commande: ctx.params.id_commande }).value();;
-								return commande;
+								return commande.id_commande;
 							})
 							.catch(() => {
 								return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical error" } )
@@ -79,8 +79,8 @@ module.exports = {
 			}
 		},
 
-		//	call "commandes.get" --id_utilisateur
-		get: {
+		//	call "commandes.getidU" --id_utilisateur
+		getidU: {
 			params: {
 				id_utilisateur: "string"
 			},
@@ -90,10 +90,8 @@ module.exports = {
 					if (exists) {
 						return Database()
 							.then((db) => {
-								var array = [];
-								idcommande = db.get("commandes").find({ id_utilisateur: ctx.params.id_utilisateur }).value();
-								array.push(idcommande.id_commande);
-								return array;
+								var commandeuser = db.get("commandes").map( "id_commande" ).value();;
+								return commandeuser;
 							})
 							.catch(() => {
 								return new MoleculerError("Commandes", 500, "ERR_CRITIAL", { code: 500, message: "Critical error" } )
@@ -121,7 +119,7 @@ module.exports = {
 			}
 		},
 
-		//	call "commandes.verifyid" --id_commande
+		//	call "commandes.verifyid" --id_utilisateur
 		verifyid: {
 			params: {
 				id_utilisateur: "string"
