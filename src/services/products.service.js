@@ -39,7 +39,7 @@ module.exports = {
 								});
 					});
 				} else {
-					return new MoleculerError("Products", 417, "Product is not valid", { code: 417, message: "Product is not valid" } )
+					return new MoleculerError("Products", 417, "Expectation failed", { code: 417, message: "Expectation failed" } )
 				}
 			}
 		},
@@ -75,7 +75,7 @@ module.exports = {
 								return new MoleculerError("Products", 500, "ERR_CRITIAL", { code: 500, message: "Critical error" } )
 							});
 					} else {
-						return new MoleculerError("Products", 404, "Product doesnt exists", { code: 404, message: "Product doesn't exists" } )
+						return new MoleculerError("Products", 404, "NOT FOUND", { code: 404, message: "Not found" } )
 					}
 				})
 			}

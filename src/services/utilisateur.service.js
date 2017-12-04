@@ -83,7 +83,7 @@ module.exports = {
 								return new MoleculerError("Utilisateur", 500, "ERR_CRITIAL", { code: 500, message: "Critical error" } )
 							});
 					} else {
-						return new MoleculerError("Utilisateur", 404, "ERR_CRITIAL", { code: 404, message: "Utilisateur doesn't exists" } )
+						return new MoleculerError("Utilisateur", 404, "NOT FOUND", { code: 404, message: "Utilisateur doesn't exists" } )
 					}
 				})
 			}
@@ -142,7 +142,7 @@ module.exports = {
 								return new MoleculerError("Utilisateur", 500, "ERR_CRITIAL", { code: 500, message: "Critical Error2" } )
 							});*/
 						}else {
-							return new MoleculerError("Utilisateur", 404, "ERR_CRITIAL", { code: 404, message: "Critical Error" } )
+							return new MoleculerError("Utilisateur", 404, "NOT FOUND", { code: 404, message: "Utilisateur doesn't exists" } )
 						}
 					})
 			}
