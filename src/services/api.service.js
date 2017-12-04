@@ -57,7 +57,7 @@ module.exports = {
 					//commande
 					"POST order/user/:id_user": "commandes.create",//check
 					"GET order/:id_order": "commandes.getidC",//check
-					"GET order/user/:id_user": "commandes.getidU",//ne considere pas id user
+					"GET order/user/:id_user": "commandes.getidU",//check
 					"PATCH order/:id_order/product/:id_product/increment": "commandes.increment",//check
 					"PATCH order/:id_order/product/:id_product/decrement": "commandes.decrement",//check
 					"PATCH order/:id_order": "commandes.validation"//check

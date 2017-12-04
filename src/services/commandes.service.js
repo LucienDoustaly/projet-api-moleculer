@@ -90,7 +90,7 @@ module.exports = {
 					if (exists) {
 						return Database()
 							.then((db) => {
-								var commandeuser = db.get("commandes").map( "id_order" ).value();;
+								var commandeuser = db.get("commandes").filter({ id_user: ctx.params.id_user }).map( "id_order" ).value();;
 								return commandeuser;
 							})
 							.catch(() => {
